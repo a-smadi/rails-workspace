@@ -7,35 +7,35 @@ if [ -n "$TMUX" ]; then
   export TMUX=''
 fi
 
-if [ ! $SHERPA_APP_DIR ]; then export SHERPA_APP_DIR=$HOME/workspace/sherpa-backend; fi
+if [ ! $RAILS_APP_DIR ]; then export RAILS_APP_DIR=$HOME/workspace/sherpa-backend; fi
 
-cd $SHERPA_APP_DIR
+cd $RAILS_APP_DIR
 
-tmux new-session  -d -s sherpa-backend
-tmux set-environment -t sherpa-backend -g SHERPA_APP_DIR $SHERPA_APP_DIR
+tmux new-session  -d -s rails-app
+tmux set-environment -t rails-app -g RAILS_APP_DIR $RAILS_APP_DIR
 
-tmux new-window     -t sherpa-backend -n 'server'
-tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'rails s'                                         Enter
+tmux new-window     -t rails-app -n 'server'
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'rails s'                                         Enter
 
-tmux new-window     -t sherpa-backend -n 'console'
-tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'rails c'                                         Enter
+tmux new-window     -t rails-app -n 'console'
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'rails c'                                         Enter
 
-tmux new-window     -t sherpa-backend -n 'redis'
-tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'redis-server'                                    Enter
-tmux split-window   -t sherpa-backend
-tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'redis-cli'                                       Enter
+tmux new-window     -t rails-app -n 'redis'
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'redis-server'                                    Enter
+tmux split-window   -t rails-app
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'redis-cli'                                       Enter
 
-tmux new-window     -t sherpa-backend -n 'vim'
-tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'vim .'                                           Enter
+tmux new-window     -t rails-app -n 'vim'
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'vim .'                                           Enter
 
-tmux new-window     -t sherpa-backend -n 'ack'
-tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'echo Ack Playground'                             Enter
+tmux new-window     -t rails-app -n 'ack'
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'reset'                                           Enter
 
-tmux new-window     -t sherpa-backend -n 'psql'
-tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'psql -U ali'                                     Enter
+tmux new-window     -t rails-app -n 'psql'
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'psql -U ali'                                     Enter
 
 if [ -z "$NESTED_TMUX" ]; then
-  tmux -2 attach-session -t sherpa-backend
+  tmux -2 attach-session -t rails-app
 else
-  tmux -2 switch-client -t sherpa-backend
+  tmux -2 switch-client -t rails-app
 fi
