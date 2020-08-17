@@ -28,11 +28,11 @@ tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'redis-cli
 tmux new-window     -t sherpa-backend -n 'vim'
 tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'vim .'                                           Enter
 
-tmux new-window     -t sherpa-backend -n 'guard'
-tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'bundle exec guard'                               Enter
+tmux new-window     -t sherpa-backend -n 'ack'
+tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'echo Ack Playground'                             Enter
 
 tmux new-window     -t sherpa-backend -n 'psql'
-tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'psql -U root'                                    Enter
+tmux send-key       -t sherpa-backend 'cd $SHERPA_APP_DIR'      Enter 'psql -U ali'                                     Enter
 
 if [ -z "$NESTED_TMUX" ]; then
   tmux -2 attach-session -t sherpa-backend
