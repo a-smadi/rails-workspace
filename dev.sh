@@ -7,7 +7,7 @@ if [ -n "$TMUX" ]; then
   export TMUX=''
 fi
 
-if [ ! $RAILS_APP_DIR ]; then export RAILS_APP_DIR=$HOME/workspace/sherpa-backend; fi
+if [ ! $RAILS_APP_DIR ]; then export RAILS_APP_DIR=$HOME/workspace/cyber-claims-server; fi
 
 cd $RAILS_APP_DIR
 
@@ -16,6 +16,10 @@ tmux set-environment -t rails-app -g RAILS_APP_DIR $RAILS_APP_DIR
 
 tmux new-window     -t rails-app -n 'server'
 tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'rails s'                                         Enter
+tmux split-window   -t rails-app
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'yarn --cwd $(pwd)/frontend dev'                  Enter
+tmux split-window   -t rails-app
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'yarn --cwd $(pwd)/frontend gulp legacy-watch'    Enter
 
 tmux new-window     -t rails-app -n 'console'
 tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'rails c'                                         Enter
@@ -31,8 +35,8 @@ tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'vim .'         
 tmux new-window     -t rails-app -n 'ack'
 tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'reset'                                           Enter
 
-tmux new-window     -t rails-app -n 'psql'
-tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'psql -U ali'                                     Enter
+tmux new-window     -t rails-app -n 'mysql'
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'mysql -uroot -p'                                 Enter
 
 if [ -z "$NESTED_TMUX" ]; then
   tmux -2 attach-session -t rails-app
