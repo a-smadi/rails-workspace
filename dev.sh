@@ -38,6 +38,9 @@ tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'reset'         
 tmux new-window     -t rails-app -n 'mysql'
 tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'mysql -uroot -p'                                 Enter
 
+tmux new-window     -t rails-app -n 'ssh'
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'reset'                                           Enter
+
 if [ -z "$NESTED_TMUX" ]; then
   tmux -2 attach-session -t rails-app
 else
