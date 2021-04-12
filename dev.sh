@@ -32,17 +32,11 @@ tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'redis-cli'     
 tmux new-window     -t rails-app -n 'vim'
 tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'vim .'                                           Enter
 
-tmux new-window     -t rails-app -n 'ack'
-tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'reset'                                           Enter
-
-tmux new-window     -t rails-app -n 'mysql'
-tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'mysql -uroot -p'                                 Enter
-
 tmux new-window     -t rails-app -n 'Elasticsearch'
 tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter '~/elasticsearch-7.1.0/bin/elasticsearch'         Enter
 
-tmux new-window     -t rails-app -n 'ssh'
-tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'reset'                                           Enter
+tmux new-window     -t rails-app -n 'mysql'
+tmux send-key       -t rails-app 'cd $RAILS_APP_DIR'      Enter 'mysql -uroot -p'                                 Enter
 
 if [ -z "$NESTED_TMUX" ]; then
   tmux -2 attach-session -t rails-app
